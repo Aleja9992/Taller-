@@ -3,12 +3,12 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyARsjW3ScztN3MKcD0LasRCfdnY6Gy-PfQ",
+  authDomain: "listacontactos-4b1ef.firebaseapp.com",
+  projectId: "listacontactos-4b1ef",
+  storageBucket: "listacontactos-4b1ef.firebasestorage.app",
+  messagingSenderId: "362059964161",
+  appId: "1:362059964161:web:8acb185daf78991a05c500"
 };
 
 const app = initializeApp(firebaseConfig);
