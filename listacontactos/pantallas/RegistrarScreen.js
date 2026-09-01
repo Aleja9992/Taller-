@@ -6,7 +6,7 @@ import { addDoc, collection } from 'firebase/firestore';
 export default function RegistrarScreen({ navigation }) {
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
-  const [email, setEmail] = useState('');
+  const [ciudad, setCiudad] = useState('');
   const [loading, setLoading] = useState(false);
 
   const registrarContacto = async () => {
@@ -24,7 +24,7 @@ export default function RegistrarScreen({ navigation }) {
       await addDoc(collection(db, 'contactos'), {
         nombre: nombre.trim(),
         telefono: telefono.trim(),
-        email: email.trim(),
+        ciudad: ciudad.trim(),
         fechaCreacion: new Date(),
       });
       Alert.alert('Éxito', 'Contacto registrado correctamente');
@@ -63,13 +63,13 @@ export default function RegistrarScreen({ navigation }) {
       </View>
 
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Email</Text>
+        <Text style={styles.label}>Ciudad</Text>
         <TextInput
           style={styles.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
+          placeholder="Ciudad"
+          value={ciudad}
+          onChangeText={setCiudad}
+          keyboardType="default"
         />
       </View>
 
