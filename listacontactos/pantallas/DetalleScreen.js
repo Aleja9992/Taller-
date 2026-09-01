@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { db } from '../firebase';
-import { doc, deleteDoc, updateDoc, addDoc, collection } from 'firebase/firestore';
+import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 
 export default function DetalleScreen({ route, navigation }) {
   const contacto = route.params?.contacto;
   const [nombre, setNombre] = useState(contacto?.nombre || '');
   const [telefono, setTelefono] = useState(contacto?.telefono || '');
-  const [email, setEmail] = useState(contacto?.email || '');
+  const [ciudad, setCiudad] = useState(contacto?.ciudad || '');
   const [loading, setLoading] = useState(false);
-  const [editando, setEditando] = useState(!contacto);
+  const [editando, setEditando] = useState(false);
 
   const guardarContacto = async () => {
     if (!nombre.trim()) {
@@ -23,26 +23,13 @@ export default function DetalleScreen({ route, navigation }) {
 
     try {
       setLoading(true);
-      if (contacto?.id) {
-        // Actualizar
-        await updateDoc(doc(db, 'contactos', contacto.id), {
-          nombre: nombre.trim(),
-          telefono: telefono.trim(),
-          email: email.trim(),
-        });
-        Alert.alert('Éxito', 'Contacto actualizado correctamente');
-        setEditando(false);
-      } else {
-        // Crear nuevo
-        await addDoc(collection(db, 'contactos'), {
-          nombre: nombre.trim(),
-          telefono: telefono.trim(),
-          email: email.trim(),
-          fechaCreacion: new Date(),
-        });
-        Alert.alert('Éxito', 'Contacto creado correctamente');
-        navigation.goBack();
-      }
+      await updateDoc(doc(db, 'contactos', contacto.id), {
+        nombre: nombre.trim(),
+        telefono: telefono.trim(),
+        ciudad: ciudad.trim(),
+      });
+      Alert.alert('Éxito', 'Contacto actualizado correctamente');
+      setEditando(false);
     } catch (error) {
       console.error('Error:', error);
       Alert.alert('Error', 'No se pudo guardar el contacto');
@@ -52,8 +39,6 @@ export default function DetalleScreen({ route, navigation }) {
   };
 
   const eliminarContacto = async () => {
-    if (!contacto?.id) return;
-
     Alert.alert(
       'Eliminar Contacto',
       '¿Estás seguro?',
@@ -109,13 +94,13 @@ export default function DetalleScreen({ route, navigation }) {
       </View>
 
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Email</Text>
+        <Text style={styles.label}>Ciudad</Text>
         <TextInput
           style={styles.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
+          placeholder="Ciudad"
+          value={ciudad}
+          onChangeText={setCiudad}
+          keyboardType="default"
           editable={editando && !loading}
         />
       </View>

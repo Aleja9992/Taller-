@@ -2,10 +2,11 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import InicioScreen from '../pantallas/InicioScreen';
 import DetalleScreen from '../pantallas/DetalleScreen';
+import RegistrarScreen from '../pantallas/RegistrarScreen';
 
 const Stack = createStackNavigator();
 
-export const NavegacionTabs = () => {
+export const NavegacionStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -24,8 +25,13 @@ export const NavegacionTabs = () => {
         name="Detalle"
         component={DetalleScreen}
         options={({ route }) => ({
-          title: route.params?.contacto?.nombre || 'Nuevo Contacto',
+          title: route.params?.contacto?.nombre || 'Detalle Contacto',
         })}
+      />
+      <Stack.Screen
+        name="Registrar"
+        component={RegistrarScreen}
+        options={{ title: 'Nuevo Contacto' }}
       />
     </Stack.Navigator>
   );
