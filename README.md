@@ -49,13 +49,13 @@ Cada contacto contiene tres datos principales:
 El proyecto se creó utilizando Expo con el template `blank`.
 
 ```bash
-npx create-expo-app@latest DirectorioContactos --template blank
+npx create-expo-app@latest listacontactos --template blank
 ```
 
 Ingresar al proyecto:
 
 ```bash
-cd DirectorioContactos
+cd listacontactos
 ```
 
 ---
@@ -159,7 +159,7 @@ De esta manera, las credenciales locales no se suben al repositorio.
 La estructura principal del proyecto es:
 
 ```text
-DirectorioContactos/
+listacontactos/
 │
 ├── assets/
 │
@@ -613,13 +613,13 @@ Se verificaron los siguientes requisitos:
 Crear el proyecto:
 
 ```bash
-npx create-expo-app@latest DirectorioContactos --template blank
+npx create-expo-app@latest listacontactos --template blank
 ```
 
 Ingresar al proyecto:
 
 ```bash
-cd DirectorioContactos
+cd listacontactos
 ```
 
 Instalar navegación:
