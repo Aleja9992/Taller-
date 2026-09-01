@@ -1,43 +1,32 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavegacionStack } from './NavegacionStack';
-import ConfigScreen from '../pantallas/ConfigScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+import InicioScreen from '../pantallas/InicioScreen';
+import DetalleScreen from '../pantallas/DetalleScreen';
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export const NavegacionTabs = () => {
   return (
-    <Tab.Navigator
+    <Stack.Navigator
       screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: '#007AFF',
-        tabBarInactiveTintColor: '#999',
+        headerTintColor: '#007AFF',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
       }}
     >
-      <Tab.Screen
-        name="ContactosStack"
-        component={NavegacionStack}
-        options={{
-          title: 'Contactos',
-          tabBarLabel: 'Contactos',
-          tabBarIcon: ({ color, size }) => (
-            // Puedes usar react-native-vector-icons aquí
-            <Text style={{ fontSize: size, color }}>👥</Text>
-          ),
-        }}
+      <Stack.Screen
+        name="Inicio"
+        component={InicioScreen}
+        options={{ title: 'Mis Contactos' }}
       />
-      <Tab.Screen
-        name="Configuracion"
-        component={ConfigScreen}
-        options={{
-          title: 'Configuración',
-          tabBarLabel: 'Configuración',
-          tabBarIcon: ({ color, size }) => (
-            <Text style={{ fontSize: size, color }}>⚙️</Text>
-          ),
-        }}
+      <Stack.Screen
+        name="Detalle"
+        component={DetalleScreen}
+        options={({ route }) => ({
+          title: route.params?.contacto?.nombre || 'Nuevo Contacto',
+        })}
       />
-    </Tab.Navigator>
+    </Stack.Navigator>
   );
 };
